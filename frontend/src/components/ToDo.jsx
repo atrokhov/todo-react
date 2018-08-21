@@ -7,7 +7,7 @@ class ToDo extends Component {
   
   state = {
     text: "",
-    updateNoteId: null,
+    updateTaskId: null,
   }
 
   resetForm = () => {
@@ -16,15 +16,14 @@ class ToDo extends Component {
 
   submitTask = (e) => {
     e.preventDefault();
-    if (this.state.updateTaskId === null) {
-      this.props.addTask(this.state.text).then(this.resetForm)
-    }
+    this.props.addTask(this.state.text).then(this.resetForm)
     this.resetForm();
   }
 
-  selectForEdit = (id) => {
+  doneTask = (id) => {
     let task = this.props.tasks[id];
     this.setState({done: true, updateTaskId: id});
+    this.props.updateTask(this.state.updateTaskId, this.state.done)
   }
 
   componentDidMount() {
@@ -44,7 +43,6 @@ class ToDo extends Component {
             placeholder="Enter task here..."
             onChange={(e) => this.setState({text: e.target.value})}
             required />
-          <button onClick={this.resetForm}>Reset</button>
           <input type="submit" value="Save Task" />
         </form>
 
@@ -62,7 +60,7 @@ class ToDo extends Component {
               <tr key={`task_${id}`}>
                 <td>{task.text}</td>
                 <td>{task.done.toString()}</td>
-                <td><button onClick={() => this.selectForEdit(id)}>done</button></td>
+                <td><button onClick={() => this.doneTask(id)}>done</button></td>
               </tr>
             ))}
           </tbody>

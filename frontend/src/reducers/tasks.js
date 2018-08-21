@@ -10,7 +10,7 @@ export default function tasks(state=initialState, action) {
 
     case 'UPDATE_TASK':
       let taskToUpdate = taskList[action.index]
-      taskToUpdate.done = true;
+      taskToUpdate.done = action.task.done;
       taskList.splice(action.index, 1, taskToUpdate);
       return taskList;
 

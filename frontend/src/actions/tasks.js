@@ -24,7 +24,7 @@ export const updateTask = (index, done) => {
       .then(res => res.json())
       .then(task => {
         return dispatch({
-          type: 'UPDATE_NOTE',
+          type: 'UPDATE_TASK',
           task,
           index
         })
