@@ -20,7 +20,7 @@ export const updateTask = (index, done) => {
     let body = JSON.stringify({done, });
     let taskId = getState().tasks[index].id;
 
-    return fetch(`/api/tasks/${taskId}/`, {headers, method: "POST", body})
+    return fetch(`/api/done/${taskId}/`, {headers, method: "PATCH", body})
       .then(res => res.json())
       .then(task => {
         return dispatch({

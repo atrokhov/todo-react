@@ -16,7 +16,7 @@ class ToDo extends Component {
 
   submitTask = (e) => {
     e.preventDefault();
-    this.props.addTask(this.state.text).then(this.resetForm)
+    this.props.addTask(this.state.text).then(this.resetForm);
     this.resetForm();
   }
 
@@ -44,6 +44,7 @@ class ToDo extends Component {
             onChange={(e) => this.setState({text: e.target.value})}
             required />
           <input type="submit" value="Save Task" />
+          <button onClick={this.resetForm}>Reset</button>
         </form>
 
         <h3>Tasks</h3>
@@ -60,6 +61,7 @@ class ToDo extends Component {
               <tr key={`task_${id}`}>
                 <td>{task.text}</td>
                 <td>{task.done.toString()}</td>
+                <td><button onClick={() => this.selectForEdit(id)}>change</button></td>
                 <td><button onClick={() => this.doneTask(id)}>done</button></td>
               </tr>
             ))}
@@ -82,8 +84,8 @@ const mapDispatchToProps = dispatch => {
     addTask: (text) => {
       return dispatch(tasks.addTask(text));
     },
-    updateTask: (id, done) => {
-      return dispatch(tasks.updateTask(id, done));
+    updateTask: (id, text) => {
+      return dispatch(tasks.updateTask(id, text));
     },
     fetchTasks: () => {
       dispatch(tasks.fetchTasks());
