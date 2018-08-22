@@ -53,6 +53,7 @@ class ToDo extends Component {
             <tr>
               <th>Task</th>
               <th>Done</th>
+              <th>Published</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -61,7 +62,7 @@ class ToDo extends Component {
               <tr key={`task_${id}`}>
                 <td>{task.text}</td>
                 <td>{task.done.toString()}</td>
-                <td><button onClick={() => this.selectForEdit(id)}>change</button></td>
+                <td>{task.pub_date}</td>
                 <td><button onClick={() => this.doneTask(id)}>done</button></td>
               </tr>
             ))}
