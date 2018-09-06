@@ -16,7 +16,7 @@ class UpdateTodo(generics.UpdateAPIView):
     permission_classes = [permissions.AllowAny, ]
 
     def post(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=self.get_object(request.data.get("done")))
+        serializer = self.get_serializer(data=self.request.data.get("done"))
         serializer.is_valid()
         instance.save()
         self.perform_update(serializer)

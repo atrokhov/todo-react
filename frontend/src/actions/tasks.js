@@ -1,4 +1,5 @@
-export const addTask = text => {
+
+export function addTask(text){
   return dispatch => {
     let headers = {"Content-Type": "application/json"};
     let body = JSON.stringify({text, });
@@ -13,7 +14,7 @@ export const addTask = text => {
   }
 }
 
-export const updateTask = (index, done) => {
+export function updateTask(index, done){
   return (dispatch, getState) => {
 
     let headers = {"Content-Type": "application/json"};
@@ -32,7 +33,7 @@ export const updateTask = (index, done) => {
   }
 }
 
-export const fetchTasks = () => {
+export function fetchTasks(){
   return dispatch => {
     let headers = {"Content-Type": "application/json"};
     return fetch("/api/tasks/", {headers, })
